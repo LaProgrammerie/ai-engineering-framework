@@ -16,6 +16,22 @@ This repository is **not** a third template. It is an **umbrella**: system view,
 
 ---
 
+## What this is / is not
+
+**This is:**
+
+- a **workflow**
+- a **discipline**
+- a **system for AI-assisted engineering**
+
+**This is not:**
+
+- a **runtime framework**
+- a **library**
+- a **magic tool**
+
+---
+
 ## Demo
 
 <p align="center">
