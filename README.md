@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="./assets/logo/logo.png" alt="AI Engineering Framework" width="160" />
+</p>
+
+
 # AI Engineering Framework
 
 **Product entry point** for a two-layer, spec-driven workflow around [Kiro](https://kiro.dev), Cursor, and compatible agents.
