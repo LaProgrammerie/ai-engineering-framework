@@ -2,6 +2,8 @@
   <img src="./assets/logo/logo.png" alt="AI Engineering Framework" width="160" />
 </p>
 
+---
+
 ## Try it in 2 minutes
 
 ```bash
@@ -13,27 +15,36 @@ printf '%s\n' 'One verifiable goal.' > .kiro/specs/hello/requirements.md && prin
 # Cursor: open try → implement docs/ai/active/handoff.md only
 ```
 
+---
+
 # AI Engineering Framework
 
-**Product entry point** for a two-layer, spec-driven workflow around [Kiro](https://kiro.dev), Cursor, and compatible agents.
+**Product entry point** — two-layer, spec-driven workflow with [Kiro](https://kiro.dev), Cursor, and compatible agents.
 
 ---
 
 ## Why it matters
 
-**AI without structure does not scale** — especially across people, sessions, and tools.  
-This framework introduces **structure before implementation**: explicit **spec**, a **projection** (`current-spec.md`), and an **execution contract** (`handoff.md`) before code.
+**AI without structure does not scale** — across people, sessions, and tools.
+
+This framework adds **structure before implementation**: **spec**, **projection** (`current-spec.md`), **execution contract** (`handoff.md`), then code.
 
 ---
 
 ## Who this is for
 
-- **Developers** using AI seriously day to day (IDE agents, reviews, refactors) who want a repeatable habit, not one-off prompts.
-- **Teams** scaling AI-assisted coding and needing shared discipline, traceability, and the same artefacts in every repo.
+- **Developers** — serious daily use of AI in the IDE (agents, reviews, refactors); want a **repeatable habit**, not one-off prompts.
+- **Teams** — scaling AI-assisted coding; need **shared discipline**, traceability, and the **same artefacts** in every repo.
 
 ---
 
-This repository is **not** a third template. It is an **umbrella**: system view, onboarding, and pointers to the two repositories that carry the actual artefacts.
+## Role of this repository
+
+This repository is **not** a third template.
+
+It is an **umbrella**: system view, onboarding, and pointers to the two repositories that carry the actual artefacts.
+
+---
 
 | Repository | Role |
 |------------|------|
@@ -58,13 +69,29 @@ This repository is **not** a third template. It is an **umbrella**: system view,
 
 ---
 
+## Why this works
+
+- **Prevents AI drift** — intent stays in spec and handoff; each session has a fixed contract.
+- **Enforces scope discipline** — work outside `handoff.md` is out of scope until the handoff updates.
+- **Aligns spec and code** — projection + handoff connect Kiro spec to what ships in the repo.
+- **Reduces rework** — fewer wrong-feature loops when the contract is explicit.
+- **Improves team collaboration** — same files, same order of operations, reviewable history.
+
+---
+
 ## Demo
 
-**What you see:** work moves from **Kiro** (where the spec lives) to a frozen **`handoff.md`**, then to **Cursor** where the agent implements only that contract.  
-Same repository the whole time; the GIF is a single pass through that chain.  
+### What you see
+
+Work moves **Kiro → `handoff.md` → Cursor**: spec in Kiro, execution scope frozen in **`handoff.md`**, then Cursor implements **only** what that contract allows.
+
+Same repository the whole time; the GIF is a single pass through that chain.
+
 Record your own version with **[`docs/demo-script.md`](docs/demo-script.md)**.
 
 *Demo GIF coming soon.*
+
+### The three beats
 
 - **Spec creation** — `.kiro/specs/<feature>/` (requirements, design, tasks) in Kiro.
 - **Handoff generation** — skill **`create-handoff`** → **`docs/ai/active/handoff.md`** (scope, files, DoD).
@@ -83,36 +110,49 @@ mkdir demo && cd demo
 git clone https://github.com/LaProgrammerie/ai-engineering-template.git .
 ```
 
-Then: open **`demo`** in **Kiro** → add **`.kiro/specs/hello/`** (`requirements.md`, `design.md`, `tasks.md`) → run **`create-handoff`** → open the same folder in **Cursor** and implement from **`docs/ai/active/handoff.md`**.  
-One-page checklist: **[First feature in 5 minutes](#first-feature-in-5-minutes)** · worked files: **[`examples/simple-feature`](https://github.com/LaProgrammerie/ai-engineering-template/tree/main/examples/simple-feature)**.
+### After clone
+
+**Kiro** — open **`demo`**, add **`.kiro/specs/hello/`** (`requirements.md`, `design.md`, `tasks.md`), run **`create-handoff`**.
+
+**Cursor** — open **`demo`**, implement from **`docs/ai/active/handoff.md`**.
+
+**More:** [First feature in 5 minutes](#first-feature-in-5-minutes) · [`examples/simple-feature`](https://github.com/LaProgrammerie/ai-engineering-template/tree/main/examples/simple-feature).
 
 ---
 
 ## Overview
 
-The framework splits concerns:
+### Two layers
 
-1. **Global layer** — how agents should behave everywhere: language, scope discipline, review/debug/refactor workflows, and **context-sync** when spec projections drift.
-2. **Project layer** — what you are building: product/architecture/standards canon, native Kiro specs, a **cross-tool summary** (`current-spec.md`), and an **execution contract** (`handoff.md`) for implementation sessions.
+1. **Global layer** — how agents behave everywhere: language, scope, review/debug/refactor, **context-sync** when spec projections drift.
+2. **Project layer** — what you build: product/architecture/standards canon, native Kiro specs, **cross-tool summary** (`current-spec.md`), **execution contract** (`handoff.md`).
 
-Agents and tools read **both**: `~/.kiro` supplies portable habits; the repo supplies truth for *this* product.
+### How tools use both
+
+**`~/.kiro`** supplies portable habits; the **repo** supplies truth for *this* product.
 
 > **In three lines:** Spec defines intent. Handoff defines execution. Code must follow the handoff.  
-> (Stated in [ai-engineering-core](https://github.com/LaProgrammerie/ai-engineering-core) — repeated here because it is the mental model for the whole system.)
+> (From [ai-engineering-core](https://github.com/LaProgrammerie/ai-engineering-core) — the mental model for the whole system.)
 
 ---
 
 ## Why this exists
 
-AI-assisted development often suffers from:
+### Common failure patterns
 
 - context split across IDE, spec tool, and Git host;
 - implementation that diverges from the agreed spec;
 - vague or expanding scope mid-session.
 
-This framework aims for **predictable**, **shareable**, and **maintainable** collaboration with agents by making **intent** (spec), **visibility** (`current-spec.md`), and **execution scope** (`handoff.md`) explicit, backed by **global** procedural skills (planning, review, debug, etc.).
+### What this framework optimizes for
 
-It is **progressive**: you can adopt pieces, but the design assumes you eventually use both layers together. Deep rationale and file-level detail live in the template — see [Why this template exists](https://github.com/LaProgrammerie/ai-engineering-template#why-this-template-exists).
+**Predictable**, **shareable**, **maintainable** collaboration with agents: explicit **intent** (spec), **visibility** (`current-spec.md`), **execution scope** (`handoff.md`), backed by **global** procedural skills (planning, review, debug, etc.).
+
+### Adoption
+
+**Progressive:** adopt pieces first; the design assumes you eventually use **both layers** together.
+
+Deep rationale: [Why this template exists](https://github.com/LaProgrammerie/ai-engineering-template#why-this-template-exists).
 
 ---
 
@@ -125,7 +165,9 @@ It is **progressive**: you can adopt pieces, but the design assumes you eventual
 | **Global** | [ai-engineering-core](https://github.com/LaProgrammerie/ai-engineering-core) → `~/.kiro/steering`, `~/.kiro/skills` | Cross-repo principles, output format, collaboration norms, reusable skills (`planning`, `code-review`, `debugging`, `refactor`, `release-checklist`, `context-sync`, …) |
 | **Project** | [ai-engineering-template](https://github.com/LaProgrammerie/ai-engineering-template) (copied into each product repo) | `AGENTS.md`, `docs/ai/*`, `.kiro/specs/`, `.kiro/steering/` (project-specific), `.kiro/skills/` (e.g. `create-handoff`), `.cursor/`, Copilot instructions |
 
-**Precedence:** project `AGENTS.md` and project `.kiro/` **override** global steering when they conflict (see [ai-engineering-core steering](https://github.com/LaProgrammerie/ai-engineering-core/blob/main/steering/00-index.md)).
+**Precedence:** project **`AGENTS.md`** and project **`.kiro/`** **override** global steering when they conflict — [ai-engineering-core `00-index.md`](https://github.com/LaProgrammerie/ai-engineering-core/blob/main/steering/00-index.md).
+
+---
 
 ### System diagram
 
@@ -146,15 +188,26 @@ flowchart TB
   REPO --> CHAIN["spec → current-spec → handoff → code"]
 ```
 
-A tighter **clone → sync → repo** diagram is maintained in [ai-engineering-core README](https://github.com/LaProgrammerie/ai-engineering-core#how-the-two-halves-connect).
+---
+
+Tighter **clone → sync → repo** view: [ai-engineering-core README](https://github.com/LaProgrammerie/ai-engineering-core#how-the-two-halves-connect).
+
+---
 
 ### Runtime workflow (conceptual)
 
+**Specify → summarize → contract**
+
 1. **Specify** in Kiro under `.kiro/specs/<feature>/` (requirements, design, tasks).
-2. **Project** maintains `docs/ai/active/current-spec.md` as a cross-tool summary when the spec changes materially.
-3. **Contract** for the coding session: `docs/ai/active/handoff.md` (scope, allowed files, plan, DoD) — often aided by the repo skill `create-handoff`.
+2. **Project** maintains `docs/ai/active/current-spec.md` when the spec changes materially (cross-tool summary).
+3. **Contract** for the session: `docs/ai/active/handoff.md` (scope, allowed files, plan, DoD) — often via **`create-handoff`**.
+
+---
+
+**Implement → support**
+
 4. **Implement** in Cursor (or similar) from handoff + `docs/ai/03-standards.md` (+ architecture as needed).
-5. **Global skills** support planning, review, debug, refactor, release, and **context-sync** to realign spec, projections, and code.
+5. **Global skills** — planning, review, debug, refactor, release, **context-sync** to realign spec, projections, and code.
 
 Step-by-step: [How the system works](https://github.com/LaProgrammerie/ai-engineering-template#2-how-the-system-works) in the template README.
 
@@ -172,6 +225,8 @@ Step-by-step: [How the system works](https://github.com/LaProgrammerie/ai-engine
 
 ## Spec, `current-spec`, handoff, and code
 
+### Roles
+
 | Artefact | Role |
 |----------|------|
 | **`.kiro/specs/<feature>/`** | **Native spec** — authoritative requirements / design / tasks in Kiro. |
@@ -179,7 +234,9 @@ Step-by-step: [How the system works](https://github.com/LaProgrammerie/ai-engine
 | **`docs/ai/active/handoff.md`** | **Execution contract** — what to build *now*, in which files, with what done means. |
 | **Code + tests** | Must align with **handoff**; if spec moved, refresh handoff and/or run **context-sync** (global skill in core). |
 
-Canonical table: [Key file roles](https://github.com/LaProgrammerie/ai-engineering-template#2-how-the-system-works) in the template.
+---
+
+Canonical detail: [Key file roles](https://github.com/LaProgrammerie/ai-engineering-template#2-how-the-system-works) in the template.
 
 ### The chain at a glance
 
@@ -198,10 +255,17 @@ flowchart LR
 
 ## End-to-end workflow (summary)
 
+### From spec to code
+
 1. **Plan** (global **`planning`** skill) to structure work before or alongside spec authoring.
 2. **Author / update** Kiro spec in the **project** repo.
 3. **Sync** `current-spec.md` when the narrative for other tools should change.
 4. **Write / refresh** `handoff.md` (project **`create-handoff`** skill).
+
+---
+
+### Ship and maintain
+
 5. **Implement** from handoff.
 6. **Review** with global **`code-review`**; **debug** with **`debugging`**; before release **`release-checklist`**.
 7. If things feel out of sync, run **`context-sync`** (global).
