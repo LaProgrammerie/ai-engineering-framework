@@ -22,6 +22,19 @@ Tell one story, in order — **no narration required** if on-screen text is clea
 
 ---
 
+## 30-second clean cut
+
+Hard cuts only — no narration required:
+
+| Time | Shot |
+|------|------|
+| **0–7s** | Kiro: `.kiro/specs/<feature>/` — tabs or tree showing the three spec files. |
+| **8–15s** | **`create-handoff`** → **`handoff.md`** open; scope / allowed files **legible**. |
+| **16–24s** | Cursor: one prompt + **code changing** (split view). |
+| **25–30s** | Terminal: **one** test command → **green**. |
+
+---
+
 ## Before recording
 
 1. Terminal: `cd` into your product repo.

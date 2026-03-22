@@ -6,43 +6,43 @@
 
 ## Try it in 2 minutes
 
+*Run first, read later.*
+
 ```bash
-mkdir try && cd try && git clone https://github.com/LaProgrammerie/ai-engineering-template.git .
+mkdir demo && cd demo
+git clone https://github.com/LaProgrammerie/ai-engineering-template.git .
 mkdir -p .kiro/specs/hello
-printf '%s\n' '- [ ] One shippable task' > .kiro/specs/hello/tasks.md
-printf '%s\n' 'One verifiable goal.' > .kiro/specs/hello/requirements.md && printf '%s\n' 'Smallest viable approach.' > .kiro/specs/hello/design.md
-# Kiro: open try → run skill create-handoff → writes docs/ai/active/handoff.md
-# Cursor: open try → implement docs/ai/active/handoff.md only
+echo '- [ ] One task' > .kiro/specs/hello/tasks.md
+# Kiro: open demo → add requirements.md + design.md → run create-handoff → see docs/demo-script.md
+# Cursor: open demo → implement docs/ai/active/handoff.md only
 ```
 
 ---
 
 # AI Engineering Framework
 
-**Product entry point** — two-layer, spec-driven workflow with [Kiro](https://kiro.dev), Cursor, and compatible agents.
+Two layers, one chain: **spec → handoff → code** — with [Kiro](https://kiro.dev), Cursor, and compatible agents.
 
 ---
 
 ## Why it matters
 
-**AI without structure does not scale** — across people, sessions, and tools.
+**AI without structure does not scale.**
 
-This framework adds **structure before implementation**: **spec**, **projection** (`current-spec.md`), **execution contract** (`handoff.md`), then code.
+**Spec** → **projection** (`current-spec.md`) → **handoff** → then code.
 
 ---
 
 ## Who this is for
 
-- **Developers** — serious daily use of AI in the IDE (agents, reviews, refactors); want a **repeatable habit**, not one-off prompts.
-- **Teams** — scaling AI-assisted coding; need **shared discipline**, traceability, and the **same artefacts** in every repo.
+- **Developers** — daily AI in the IDE; want a **repeatable habit**.
+- **Teams** — shared discipline, traceability, **same artefacts** in every repo.
 
 ---
 
 ## Role of this repository
 
-This repository is **not** a third template.
-
-It is an **umbrella**: system view, onboarding, and pointers to the two repositories that carry the actual artefacts.
+**Not** a third template. **Umbrella** — system view, onboarding, pointers to the repos that hold the artefacts.
 
 ---
 
@@ -71,31 +71,37 @@ It is an **umbrella**: system view, onboarding, and pointers to the two reposito
 
 ## Why this works
 
-- **Prevents AI drift** — intent stays in spec and handoff; each session has a fixed contract.
-- **Enforces scope discipline** — work outside `handoff.md` is out of scope until the handoff updates.
-- **Aligns spec and code** — projection + handoff connect Kiro spec to what ships in the repo.
-- **Reduces rework** — fewer wrong-feature loops when the contract is explicit.
-- **Improves team collaboration** — same files, same order of operations, reviewable history.
+- **Prevents AI drift** — fixed contract per session (spec + handoff).
+- **Enforces scope discipline** — outside `handoff.md` is out of scope until you refresh it.
+- **Aligns spec and code** — projection + handoff link Kiro to what ships.
+- **Reduces rework** — explicit contract beats “surprise” implementation.
 
 ---
 
 ## Demo
 
-### What you see
+### What you see (3 beats)
 
-Work moves **Kiro → `handoff.md` → Cursor**: spec in Kiro, execution scope frozen in **`handoff.md`**, then Cursor implements **only** what that contract allows.
+You stay in **one repo**. **Kiro** holds the spec; **`handoff.md`** freezes what coding may touch; the **IDE** implements **only** that.
 
-Same repository the whole time; the GIF is a single pass through that chain.
-
-Record your own version with **[`docs/demo-script.md`](docs/demo-script.md)**.
+Until **`docs/demo.gif`** lands, follow the concrete steps below — same story, no video.
 
 *Demo GIF coming soon.*
 
-### The three beats
+### Concrete steps (no GIF)
 
-- **Spec creation** — `.kiro/specs/<feature>/` (requirements, design, tasks) in Kiro.
-- **Handoff generation** — skill **`create-handoff`** → **`docs/ai/active/handoff.md`** (scope, files, DoD).
-- **Implementation** — Cursor follows the handoff + project standards.
+1. **Write tasks** — under `.kiro/specs/<feature>/` (`tasks.md` + `requirements.md` + `design.md`).
+2. **Generate handoff** — Kiro skill **`create-handoff`** → **`docs/ai/active/handoff.md`**.
+3. **Implement in the IDE** — Cursor (or other) from **handoff** + **`docs/ai/03-standards.md`**.
+4. **Run tests** — e.g. `npm test` / `pytest` / `go test ./...` per your project.
+
+Full recording script: **[`docs/demo-script.md`](docs/demo-script.md)**.
+
+### The three beats (summary)
+
+- **Spec** — `.kiro/specs/<feature>/` in Kiro.
+- **Handoff** — **`create-handoff`** → **`docs/ai/active/handoff.md`**.
+- **Code** — IDE follows the handoff.
 
 <p align="center">
   <img src="./docs/demo.gif" alt="Demo: spec in Kiro → handoff.md → implementation in Cursor" width="720" />
@@ -394,13 +400,16 @@ Full map and rules: [context-map.md](https://github.com/LaProgrammerie/ai-engine
 
 ## Failure modes
 
-**This framework will fail if:**
+**This WILL break if:**
 
-- **The spec is not maintained** — code and decisions move on; `.kiro/specs/` still describes old intent. Humans and agents reason from different sources.
-- **The handoff is outdated** — spec or `current-spec.md` changed; `handoff.md` still lists wrong files, tasks, or DoD. You optimize the wrong job.
-- **Scope is ignored** — prompts expand past `handoff.md` (“while we’re here”). You lose traceability and clean review.
-- **Spec and implementation are conflated** — requirements smuggle in code-level detail, or specs read like already-built systems. Review and rollback get expensive.
-- **People over-trust the model** — nobody reads the handoff or the diff; merges are assumed safe. **Skills are not proof.**
+- **Spec is not updated** — reality moves; `.kiro/specs/` still describes old intent.
+- **Handoff is outdated** — spec or `current-spec.md` moved; `handoff.md` still lists wrong files / tasks / DoD.
+- **Scope is ignored** — prompts go past `handoff.md` (“while we’re here”).
+
+**Also breaks:**
+
+- **Spec and implementation are conflated** — requirements smuggle code detail; specs read like finished systems.
+- **People over-trust the model** — no one reads handoff or diff; **skills are not proof.**
 
 ### How to avoid
 
