@@ -149,32 +149,77 @@ Narrative example (login feature, cross-repo): [flow-login.md](https://github.co
 
 ---
 
-## Quickstart (actionable)
+## Quickstart
 
-**A. One-time on each machine — global layer**
+### A. Ultra quick (copy / paste)
+
+**Once per machine — global layer into `~/.kiro`:**
 
 ```bash
 git clone https://github.com/LaProgrammerie/ai-engineering-core.git
 cd ai-engineering-core
 chmod +x sync-to-home.sh && ./sync-to-home.sh
+# Restart or reload Kiro
 ```
 
-Restart or reload **Kiro** so `~/.kiro` steering and skills load.  
-SSH clone: `git@github.com:LaProgrammerie/ai-engineering-core.git` — see [Install](https://github.com/LaProgrammerie/ai-engineering-core#install-2-minutes).
+**New project from the template:**
 
-**B. Each product repo — project layer**
+```bash
+mkdir my-project && cd my-project
+git clone https://github.com/LaProgrammerie/ai-engineering-template.git .
+```
 
-Use [ai-engineering-template](https://github.com/LaProgrammerie/ai-engineering-template) as a GitHub template or fork, clone your copy, then run through [After cloning this template](https://github.com/LaProgrammerie/ai-engineering-template#after-cloning-this-template-do-this-first) (fill `AGENTS.md`, `docs/ai/01–03`, invariants).
+**Then in Kiro and Cursor:**
 
-**C. Each feature — inside that repo**
+```text
+Kiro: open folder → my-project
+Kiro: create .kiro/specs/first-feature/ (requirements.md, design.md, tasks.md)
+Kiro: run skill create-handoff → docs/ai/active/handoff.md
+Cursor: open my-project → implement only what handoff.md allows
+```
 
-1. Create or update **`.kiro/specs/<feature>/`** in Kiro (requirements → design → tasks).
-2. Refresh **`docs/ai/active/current-spec.md`** when the cross-tool summary should change.
-3. Run the repo skill **`create-handoff`** → **`docs/ai/active/handoff.md`**.
-4. **Implement in Cursor** (or your IDE) strictly from **handoff** + **`docs/ai/03-standards.md`**.
-5. If things feel out of sync → global skill **`context-sync`** in Kiro.
+SSH URLs: `git@github.com:LaProgrammerie/ai-engineering-core.git` and `git@github.com:LaProgrammerie/ai-engineering-template.git`.
 
-That is the minimum path: **sync core → bootstrap template → spec → current-spec → handoff → code.**
+---
+
+### B. Guided (what each step does)
+
+| Step | What happens |
+|------|----------------|
+| Clone **ai-engineering-core** + **`./sync-to-home.sh`** | Copies steering + skills into **`~/.kiro/`** so every repo gets the same agent habits. |
+| **`mkdir` / clone template into `my-project`** | You get `AGENTS.md`, `docs/ai/`, `.kiro/specs/`, `.cursor/`, and the **`create-handoff`** skill. |
+| Create **`.kiro/specs/<feature>/`** in Kiro | Native spec: intent split into requirements → design → tasks. |
+| Run **`create-handoff`** | Fills **`docs/ai/active/handoff.md`** — the execution contract for this session. |
+| Implement in **Cursor** | IDE follows **handoff** + **`docs/ai/03-standards.md`**; keeps scope bounded. |
+
+When the spec story should be visible outside Kiro, edit **`docs/ai/active/current-spec.md`**. If spec and code diverge, use global **`context-sync`** in Kiro.
+
+---
+
+### C. Conceptual (how it fits together)
+
+The minimum path through the system is: **sync core → bootstrap from template → spec → (optional) current-spec → handoff → code.**  
+Progressive adoption is OK; full value shows when both layers and the spec chain are in use.
+
+- **Bootstrap checklist (real product):** [After cloning this template](https://github.com/LaProgrammerie/ai-engineering-template#after-cloning-this-template-do-this-first) — fill `AGENTS.md`, `docs/ai/01–03`, invariants.  
+- **Install detail:** [ai-engineering-core — Install](https://github.com/LaProgrammerie/ai-engineering-core#install-2-minutes).  
+- **Feature order:** [What to update when](https://github.com/LaProgrammerie/ai-engineering-template#4-what-to-update-when).
+
+---
+
+## First feature in 5 minutes
+
+_No theory — do this in order._
+
+1. **`./sync-to-home.sh`** from a clone of [ai-engineering-core](https://github.com/LaProgrammerie/ai-engineering-core) if you have not already; reload Kiro.
+2. **`git clone https://github.com/LaProgrammerie/ai-engineering-template.git try-framework && cd try-framework`**
+3. Open **`try-framework`** in **Kiro**. Add **`.kiro/specs/hello/`** with three small files: **`requirements.md`** (one sentence goal), **`design.md`** (one paragraph), **`tasks.md`** (2 bullet tasks).
+4. Optionally one-line update **`docs/ai/active/current-spec.md`** so it names `hello` and the goal.
+5. Run **`create-handoff`** in Kiro → confirm **`docs/ai/active/handoff.md`** is filled.
+6. Open the same folder in **Cursor**; prompt: *Implement `docs/ai/active/handoff.md` only; follow `docs/ai/03-standards.md`.*
+7. Run whatever test command your stack uses (see `03-standards.md` or template defaults), e.g. **`npm test`** / **`pytest`** / **`go test ./...`**.
+
+Worked files to compare: [examples/simple-feature](https://github.com/LaProgrammerie/ai-engineering-template/tree/main/examples/simple-feature).
 
 ---
 
