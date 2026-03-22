@@ -2,6 +2,16 @@
   <img src="./assets/logo/logo.png" alt="AI Engineering Framework" width="160" />
 </p>
 
+## Try it in 2 minutes
+
+```bash
+mkdir try && cd try && git clone https://github.com/LaProgrammerie/ai-engineering-template.git .
+mkdir -p .kiro/specs/hello
+printf '%s\n' '- [ ] One shippable task' > .kiro/specs/hello/tasks.md
+printf '%s\n' 'One verifiable goal.' > .kiro/specs/hello/requirements.md && printf '%s\n' 'Smallest viable approach.' > .kiro/specs/hello/design.md
+# Kiro: open try → run skill create-handoff → writes docs/ai/active/handoff.md
+# Cursor: open try → implement docs/ai/active/handoff.md only
+```
 
 # AI Engineering Framework
 
