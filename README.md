@@ -60,12 +60,19 @@ This repository is **not** a third template. It is an **umbrella**: system view,
 
 ## Demo
 
+**What you see:** work moves from **Kiro** (where the spec lives) to a frozen **`handoff.md`**, then to **Cursor** where the agent implements only that contract.  
+Same repository the whole time; the GIF is a single pass through that chain.  
+Record your own version with **[`docs/demo-script.md`](docs/demo-script.md)**.
+
+*Demo GIF coming soon.*
+
+- **Spec creation** — `.kiro/specs/<feature>/` (requirements, design, tasks) in Kiro.
+- **Handoff generation** — skill **`create-handoff`** → **`docs/ai/active/handoff.md`** (scope, files, DoD).
+- **Implementation** — Cursor follows the handoff + project standards.
+
 <p align="center">
   <img src="./docs/demo.gif" alt="Demo: spec in Kiro → handoff.md → implementation in Cursor" width="720" />
 </p>
-
-This loop is the framework in one glance: **intent** lives in the Kiro **spec** (requirements / design / tasks), **execution scope** is frozen in **`handoff.md`**, and the IDE implements **only** what the handoff allows—so spec, contract, and code stay aligned.  
-Record your own walkthrough with the step-by-step guide: **[`docs/demo-script.md`](docs/demo-script.md)**.
 
 ---
 
