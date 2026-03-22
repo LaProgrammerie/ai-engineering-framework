@@ -16,6 +16,17 @@ This repository is **not** a third template. It is an **umbrella**: system view,
 
 ---
 
+## Demo
+
+<p align="center">
+  <img src="./docs/demo.gif" alt="Demo: Kiro spec → handoff.md → implementation in Cursor (record per docs/demo-script.md)" width="720" />
+</p>
+
+This loop is the framework in one glance: **intent** lives in the Kiro **spec** (requirements / design / tasks), **execution scope** is frozen in **`handoff.md`**, and the IDE implements **only** what the handoff allows—so spec, contract, and code stay aligned.  
+Record your own walkthrough with the step-by-step guide: **[`docs/demo-script.md`](docs/demo-script.md)**.
+
+---
+
 ## Overview
 
 The framework splits concerns:
@@ -229,7 +240,7 @@ Local index for this umbrella repo: [`examples/README.md`](examples/README.md).
 
 **Future (optional):** roadmap, ADRs that span both repos, or shared diagrams — can live under `docs/` as the framework evolves.
 
-**Distribution (high leverage):** a short **screen recording or GIF** (create spec → `create-handoff` → implement in Cursor) often beats more prose for first-time readers — worth adding above the fold when you have one.
+**Distribution:** commit **`docs/demo.gif`** after recording (see **[Demo](#demo)** and [`docs/demo-script.md`](docs/demo-script.md)).
 
 ---
 
