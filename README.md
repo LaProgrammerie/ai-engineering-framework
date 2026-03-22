@@ -309,6 +309,20 @@ Local index for this umbrella repo: [`examples/README.md`](examples/README.md).
 
 ---
 
+## Future DX improvements
+
+**Not implemented today** — the following are **directional ideas** only; there is no supported CLI, generator package, or bundled automation in these repositories yet.
+
+| Direction | Idea |
+|-----------|------|
+| **CLI** | One tool to scaffold spec folders, validate structure, or drive **`handoff.md`** from `.kiro/specs/` (today: Kiro + **`create-handoff`** skill). |
+| **Template generator** | Interactive or flags-based bootstrap beyond “clone template” (stack, test runner, CI stub). |
+| **Automation hooks** | Stronger default wiring between spec changes and **`current-spec.md`** / **`handoff.md`** (the template already documents [optional hooks](https://github.com/LaProgrammerie/ai-engineering-template#5-hooks-and-automation); nothing is mandatory). |
+
+Contributions would likely land in **ai-engineering-template** or **ai-engineering-core** once scoped; this umbrella repo stays documentation-first unless the project decides otherwise.
+
+---
+
 ## License
 
 This umbrella repo is released under the [MIT License](LICENSE) (same spirit as the sibling repositories).
