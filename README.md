@@ -109,23 +109,6 @@ Full recording script: **[`docs/demo-script.md`](docs/demo-script.md)**.
 
 ---
 
-## Try it now
-
-```bash
-mkdir demo && cd demo
-git clone https://github.com/LaProgrammerie/ai-engineering-template.git .
-```
-
-### After clone
-
-**Kiro** — open **`demo`**, add **`.kiro/specs/hello/`** (`requirements.md`, `design.md`, `tasks.md`), run **`create-handoff`**.
-
-**Cursor** — open **`demo`**, implement from **`docs/ai/active/handoff.md`**.
-
-**More:** [First feature in 5 minutes](#first-feature-in-5-minutes) · [`examples/simple-feature`](https://github.com/LaProgrammerie/ai-engineering-template/tree/main/examples/simple-feature).
-
----
-
 ## Overview
 
 ### Two layers
@@ -282,7 +265,9 @@ Narrative example (login feature, cross-repo): [flow-login.md](https://github.co
 
 ## Quickstart
 
-*Fastest path:* **[Try it now](#try-it-now)** (minimal clone + Kiro + Cursor).
+*Template-only, zero extra setup:* **[Try it in 2 minutes](#try-it-in-2-minutes)** (top of this file).
+
+*This section:* add **global** steering/skills (`~/.kiro`), SSH URLs, and step-by-step tables.
 
 ### A. Ultra quick (copy / paste)
 
@@ -295,20 +280,15 @@ chmod +x sync-to-home.sh && ./sync-to-home.sh
 # Restart or reload Kiro
 ```
 
-**New project from the template:**
-
-```bash
-mkdir my-project && cd my-project
-git clone https://github.com/LaProgrammerie/ai-engineering-template.git .
-```
+**New project from the template** — same flow as **[Try it in 2 minutes](#try-it-in-2-minutes)**; use any folder name (e.g. `my-project` instead of `demo`).
 
 **Then in Kiro and Cursor:**
 
 ```text
-Kiro: open folder → my-project
-Kiro: create .kiro/specs/first-feature/ (requirements.md, design.md, tasks.md)
+Kiro: open your project folder
+Kiro: create .kiro/specs/<feature>/ (requirements.md, design.md, tasks.md)
 Kiro: run skill create-handoff → docs/ai/active/handoff.md
-Cursor: open my-project → implement only what handoff.md allows
+Cursor: same folder → implement only what handoff.md allows
 ```
 
 SSH URLs: `git@github.com:LaProgrammerie/ai-engineering-core.git` and `git@github.com:LaProgrammerie/ai-engineering-template.git`.
@@ -427,7 +407,7 @@ Full map and rules: [context-map.md](https://github.com/LaProgrammerie/ai-engine
 | Global + project story (login) | [ai-engineering-core: `examples/flow-login.md`](https://github.com/LaProgrammerie/ai-engineering-core/blob/main/examples/flow-login.md) |
 | ASCII flow (spec pipeline) | [template README diagram](https://github.com/LaProgrammerie/ai-engineering-template#diagram-end-to-end-flow) |
 
-Local index for this umbrella repo: [`examples/README.md`](examples/README.md).
+Cross-repo examples index (nothing embedded here): [`examples/README.md`](examples/README.md).
 
 ---
 

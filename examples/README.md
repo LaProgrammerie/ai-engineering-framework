@@ -1,10 +1,15 @@
-# Examples (live in sibling repositories)
+# Cross-repo examples
 
-This umbrella repo does **not** copy worked examples — it points to them.
+**Status:** this **umbrella** repository does **not** contain worked example code or filled spec trees.  
+Everything below lives in **sibling repositories** ([ai-engineering-template](https://github.com/LaProgrammerie/ai-engineering-template), [ai-engineering-core](https://github.com/LaProgrammerie/ai-engineering-core)) — this folder is only an **index and pointers**.
+
+There are **no** copy-paste feature folders inside **ai-engineering-framework** itself; clone the linked paths if you want files on disk.
+
+---
 
 ## Demo flow (quick)
 
-Copy-paste checklist for a minimal recording or dry run (detail: [`../docs/demo-script.md`](../docs/demo-script.md)):
+Checklist for a minimal recording or dry run (detail: [`../docs/demo-script.md`](../docs/demo-script.md)):
 
 1. `git clone` [ai-engineering-template](https://github.com/LaProgrammerie/ai-engineering-template) (or your fork) → `cd` into it.
 2. Sync [ai-engineering-core](https://github.com/LaProgrammerie/ai-engineering-core) to `~/.kiro` and reload Kiro (`./sync-to-home.sh`).
@@ -21,4 +26,4 @@ Copy-paste checklist for a minimal recording or dry run (detail: [`../docs/demo-
 | **simple-feature** | [ai-engineering-template](https://github.com/LaProgrammerie/ai-engineering-template/tree/main/examples/simple-feature) | Filled spec slice, `current-spec`, handoff, and reference code you can diff against empty placeholders. |
 | **flow-login** (narrative) | [ai-engineering-core](https://github.com/LaProgrammerie/ai-engineering-core/blob/main/examples/flow-login.md) | Story of how global skills and the project template chain together for one feature. |
 
-Clone those repos or open the paths above on GitHub.
+Open the links on GitHub or clone the sibling repos to use these examples locally.
