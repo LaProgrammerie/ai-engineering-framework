@@ -265,6 +265,26 @@ Full map and rules: [context-map.md](https://github.com/LaProgrammerie/ai-engine
 
 ---
 
+## Failure modes
+
+The framework **does not fail technically** — it fails when **artefacts lie**:
+
+| Mode | What goes wrong |
+|------|------------------|
+| **Spec not updated** | Code or decisions move on; `.kiro/specs/` still describes the old intent. People and agents argue from different sources. |
+| **Handoff outdated** | Spec or `current-spec.md` changed; `handoff.md` still names old files, tasks, or DoD. Implementation chases the wrong contract. |
+| **Scope ignored** | “While you’re here” prompts go beyond `handoff.md`. Traceability and blameless review collapse. |
+| **Mixing spec and implementation** | Requirements smuggle in implementation detail (or specs pretend the design is already coded). Hard to review, revert, or reuse. |
+| **Over-reliance on AI** | No human reads handoff or diff; merges assumed safe; skills treated as proof. Errors scale with model confidence. |
+
+### How to avoid
+
+- **Sync spec → handoff** — After any material spec change, refresh **`create-handoff`** / **`handoff.md`** before the next coding session.
+- **Treat `handoff.md` as the contract** — Not in the handoff → not in scope for this pass (or update the handoff first).
+- **Update docs when scope changes** — Cascade **`current-spec.md`** and canon **`docs/ai/*`** per the [cheat sheet](#cheat-sheet-which-file-to-touch) and template [What to update when](https://github.com/LaProgrammerie/ai-engineering-template#4-what-to-update-when).
+
+---
+
 ## Examples and diagrams
 
 | Example | Where |
