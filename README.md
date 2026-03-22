@@ -104,6 +104,19 @@ Step-by-step: [How the system works](https://github.com/LaProgrammerie/ai-engine
 
 Canonical table: [Key file roles](https://github.com/LaProgrammerie/ai-engineering-template#2-how-the-system-works) in the template.
 
+### The chain at a glance
+
+```
+.kiro/specs/<feature>/  →  docs/ai/active/current-spec.md  →  docs/ai/active/handoff.md  →  code (+ tests)
+```
+
+```mermaid
+flowchart LR
+  S[Spec] --> C[current-spec]
+  C --> H[handoff]
+  H --> X["code + tests"]
+```
+
 ---
 
 ## End-to-end workflow (summary)
@@ -120,12 +133,32 @@ Narrative example (login feature, cross-repo): [flow-login.md](https://github.co
 
 ---
 
-## Quickstart
+## Quickstart (actionable)
 
-1. **Global layer** — clone [ai-engineering-core](https://github.com/LaProgrammerie/ai-engineering-core), run `./sync-to-home.sh`, reload Kiro.  
-   Details: [Install](https://github.com/LaProgrammerie/ai-engineering-core#install-2-minutes).
-2. **Project layer** — create a repo from [ai-engineering-template](https://github.com/LaProgrammerie/ai-engineering-template) (fork or use as template), then follow [After cloning this template](https://github.com/LaProgrammerie/ai-engineering-template#after-cloning-this-template-do-this-first).
-3. **First feature** — follow the template’s recommended order: spec → `current-spec` → handoff → code (see [§4 What to update when](https://github.com/LaProgrammerie/ai-engineering-template#4-what-to-update-when)).
+**A. One-time on each machine — global layer**
+
+```bash
+git clone https://github.com/LaProgrammerie/ai-engineering-core.git
+cd ai-engineering-core
+chmod +x sync-to-home.sh && ./sync-to-home.sh
+```
+
+Restart or reload **Kiro** so `~/.kiro` steering and skills load.  
+SSH clone: `git@github.com:LaProgrammerie/ai-engineering-core.git` — see [Install](https://github.com/LaProgrammerie/ai-engineering-core#install-2-minutes).
+
+**B. Each product repo — project layer**
+
+Use [ai-engineering-template](https://github.com/LaProgrammerie/ai-engineering-template) as a GitHub template or fork, clone your copy, then run through [After cloning this template](https://github.com/LaProgrammerie/ai-engineering-template#after-cloning-this-template-do-this-first) (fill `AGENTS.md`, `docs/ai/01–03`, invariants).
+
+**C. Each feature — inside that repo**
+
+1. Create or update **`.kiro/specs/<feature>/`** in Kiro (requirements → design → tasks).
+2. Refresh **`docs/ai/active/current-spec.md`** when the cross-tool summary should change.
+3. Run the repo skill **`create-handoff`** → **`docs/ai/active/handoff.md`**.
+4. **Implement in Cursor** (or your IDE) strictly from **handoff** + **`docs/ai/03-standards.md`**.
+5. If things feel out of sync → global skill **`context-sync`** in Kiro.
+
+That is the minimum path: **sync core → bootstrap template → spec → current-spec → handoff → code.**
 
 ---
 
@@ -137,6 +170,15 @@ Narrative example (login feature, cross-repo): [flow-login.md](https://github.co
 - Change **project** when something is **specific to this product** (stack, boundaries, active feature spec, handoff for today’s session).
 
 The template maintains the authoritative **“if you change X, update Y”** table: [What to update when](https://github.com/LaProgrammerie/ai-engineering-template#4-what-to-update-when).
+
+### Cheat sheet (which file to touch)
+
+| You changed… | Update |
+|--------------|--------|
+| **Product** / durable scope | `docs/ai/01-product.md` |
+| **Architecture** / boundaries | `docs/ai/02-architecture.md` (+ `docs/ai/05-decisions.md` if it is a durable ADR) |
+| **Feature** (requirements / design / tasks) | `.kiro/specs/<feature>/` **then** `docs/ai/active/current-spec.md` **and** `handoff.md` if execution scope changed |
+| **Only the next task** (same spec, new session) | `docs/ai/active/handoff.md` |
 
 ---
 
@@ -151,7 +193,14 @@ Not magic — **conventions + explicit files**:
 
 Full map and rules: [context-map.md](https://github.com/LaProgrammerie/ai-engineering-template/blob/main/docs/ai/context-map.md).
 
-**Honest limit:** without discipline (skipping handoff updates, never syncing `current-spec.md`), the system degrades like any process. **Discipline is the product** (see [ai-engineering-core — Why use it](https://github.com/LaProgrammerie/ai-engineering-core#why-use-it)).
+---
+
+## Limits and expectations
+
+- **Not magic.** Files do not stay aligned by themselves unless you maintain them or add hooks. The framework is **conventions + explicit artefacts**, not auto-healing infrastructure.
+- **Requires discipline.** Ignoring `handoff.md`, never updating `current-spec.md`, or skipping the spec chain → agents **will** drift. **Discipline is the product** (see [ai-engineering-core — Why use it](https://github.com/LaProgrammerie/ai-engineering-core#why-use-it)).
+- **Not for every task.** For a one-off throwaway script, this stack is **overkill**; it pays off on **shared, evolving** codebases and teams that care about traceability from intent to code.
+- **Progressive adoption is fine**; full value shows up when **core + template + spec → handoff → code** are used together.
 
 ---
 
@@ -174,6 +223,8 @@ Local index for this umbrella repo: [`examples/README.md`](examples/README.md).
 **Out of scope:** duplicating full steering text, skill bodies, or the template’s `docs/ai` canon — those stay in **core** and **template** respectively.
 
 **Future (optional):** roadmap, ADRs that span both repos, or shared diagrams — can live under `docs/` as the framework evolves.
+
+**Distribution (high leverage):** a short **screen recording or GIF** (create spec → `create-handoff` → implement in Cursor) often beats more prose for first-time readers — worth adding above the fold when you have one.
 
 ---
 
