@@ -7,6 +7,22 @@
 
 **Product entry point** for a two-layer, spec-driven workflow around [Kiro](https://kiro.dev), Cursor, and compatible agents.
 
+---
+
+## Why it matters
+
+**AI without structure does not scale** — especially across people, sessions, and tools.  
+This framework introduces **structure before implementation**: explicit **spec**, a **projection** (`current-spec.md`), and an **execution contract** (`handoff.md`) before code.
+
+---
+
+## Who this is for
+
+- **Developers** using AI seriously day to day (IDE agents, reviews, refactors) who want a repeatable habit, not one-off prompts.
+- **Teams** scaling AI-assisted coding and needing shared discipline, traceability, and the same artefacts in every repo.
+
+---
+
 This repository is **not** a third template. It is an **umbrella**: system view, onboarding, and pointers to the two repositories that carry the actual artefacts.
 
 | Repository | Role |
@@ -35,11 +51,23 @@ This repository is **not** a third template. It is an **umbrella**: system view,
 ## Demo
 
 <p align="center">
-  <img src="./docs/demo.gif" alt="Demo: Kiro spec → handoff.md → implementation in Cursor (record per docs/demo-script.md)" width="720" />
+  <img src="./docs/demo.gif" alt="Demo: spec in Kiro → handoff.md → implementation in Cursor" width="720" />
 </p>
 
 This loop is the framework in one glance: **intent** lives in the Kiro **spec** (requirements / design / tasks), **execution scope** is frozen in **`handoff.md`**, and the IDE implements **only** what the handoff allows—so spec, contract, and code stay aligned.  
 Record your own walkthrough with the step-by-step guide: **[`docs/demo-script.md`](docs/demo-script.md)**.
+
+---
+
+## Try it now
+
+```bash
+mkdir demo && cd demo
+git clone https://github.com/LaProgrammerie/ai-engineering-template.git .
+```
+
+Then: open **`demo`** in **Kiro** → add **`.kiro/specs/hello/`** (`requirements.md`, `design.md`, `tasks.md`) → run **`create-handoff`** → open the same folder in **Cursor** and implement from **`docs/ai/active/handoff.md`**.  
+One-page checklist: **[First feature in 5 minutes](#first-feature-in-5-minutes)** · worked files: **[`examples/simple-feature`](https://github.com/LaProgrammerie/ai-engineering-template/tree/main/examples/simple-feature)**.
 
 ---
 
@@ -167,6 +195,8 @@ Narrative example (login feature, cross-repo): [flow-login.md](https://github.co
 
 ## Quickstart
 
+*Fastest path:* **[Try it now](#try-it-now)** (minimal clone + Kiro + Cursor).
+
 ### A. Ultra quick (copy / paste)
 
 **Once per machine — global layer into `~/.kiro`:**
@@ -283,15 +313,13 @@ Full map and rules: [context-map.md](https://github.com/LaProgrammerie/ai-engine
 
 ## Failure modes
 
-The framework **does not fail technically** — it fails when **artefacts lie**:
+**This framework will fail if:**
 
-| Mode | What goes wrong |
-|------|------------------|
-| **Spec not updated** | Code or decisions move on; `.kiro/specs/` still describes the old intent. People and agents argue from different sources. |
-| **Handoff outdated** | Spec or `current-spec.md` changed; `handoff.md` still names old files, tasks, or DoD. Implementation chases the wrong contract. |
-| **Scope ignored** | “While you’re here” prompts go beyond `handoff.md`. Traceability and blameless review collapse. |
-| **Mixing spec and implementation** | Requirements smuggle in implementation detail (or specs pretend the design is already coded). Hard to review, revert, or reuse. |
-| **Over-reliance on AI** | No human reads handoff or diff; merges assumed safe; skills treated as proof. Errors scale with model confidence. |
+- **The spec is not maintained** — code and decisions move on; `.kiro/specs/` still describes old intent. Humans and agents reason from different sources.
+- **The handoff is outdated** — spec or `current-spec.md` changed; `handoff.md` still lists wrong files, tasks, or DoD. You optimize the wrong job.
+- **Scope is ignored** — prompts expand past `handoff.md` (“while we’re here”). You lose traceability and clean review.
+- **Spec and implementation are conflated** — requirements smuggle in code-level detail, or specs read like already-built systems. Review and rollback get expensive.
+- **People over-trust the model** — nobody reads the handoff or the diff; merges are assumed safe. **Skills are not proof.**
 
 ### How to avoid
 

@@ -6,6 +6,22 @@ Use this in a repo bootstrapped from **[ai-engineering-template](https://github.
 
 ---
 
+## What to put in the GIF (~45–75s)
+
+Tell one story, in order — **no narration required** if on-screen text is clear:
+
+| # | Shot | Viewer should see |
+|---|------|-------------------|
+| 1 | **Kiro** | Repo open; `.kiro/specs/<feature>/` with `requirements.md` / `design.md` / `tasks.md` (tabs or file tree). |
+| 2 | **Kiro** | Skill **`create-handoff`** run → cut to **`docs/ai/active/handoff.md`** with a **readable** scope (files allowed, plan, DoD). |
+| 3 | **Cursor** | Same folder open; one short prompt tied to **handoff**; editor shows **code changing** (split: chat + file). |
+| 4 | **Terminal** | One test (or build) command → **green / success**. |
+| 5 | *(optional)* | 2s title at start or end: **spec → handoff → code**. |
+
+**Skip:** long typing, tiny fonts, tokens/URLs, refactors outside the handoff. **Goal:** proof that **intent (spec)** becomes **contract (handoff)** becomes **working code**.
+
+---
+
 ## Before recording
 
 1. Terminal: `cd` into your product repo.
